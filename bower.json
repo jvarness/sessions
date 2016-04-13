@@ -1,0 +1,14 @@
+{
+  "name": "sessions-config",
+  "homepage": "https://github.com/jvarness/sessions",
+  "authors": [
+    "Jake Varness <jake.varness@gmail.com>"
+  ],
+  "description": "Slate Configuration Page for Sessions",
+  "main": "",
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "Slate": "pebble-slate#^0.0.3"
+  }
+}
