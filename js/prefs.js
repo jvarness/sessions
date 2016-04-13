@@ -5,7 +5,7 @@
 
 function loadOptions() {
   var $accent1 = $('#accentColor1');
-  var $accent2 = $('#accentColor1');
+  var $accent2 = $('#accentColor2');
   
   if (localStorage.accentColor1) {
     $accent1[0].value = localStorage.accentColor1;
@@ -21,7 +21,7 @@ function submitHandler() {
 
 function getAndStoreConfig() {
   var $accent1 = $('#accentColor1');
-  var $accent2 = $('#accentColor1');
+  var $accent2 = $('#accentColor2');
   
   var options = {
     accentColor1: $accent1.val(),
