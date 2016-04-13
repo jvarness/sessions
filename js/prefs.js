@@ -28,9 +28,8 @@ function getAndStoreConfig() {
     accentColor2: $accent2.val()
   };
   
-  localStorage.backgroundColor = options.backgroundColor;
-  localStorage.minuteColor = options.minuteColor;
-  localStorage.hourColor = options.hourColor;
+  localStorage.accentColor1 = options.accentColor1;
+  localStorage.accentColor2 = options.accentColor2;
   
   return options;
 }
