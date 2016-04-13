@@ -1,6 +1,11 @@
 {
-    "appKeys": {},
+    "appKeys": {
+        "accentColor1": 0,
+        "accentColor2": 1,
+        "weatherTemp": 2
+    },
     "capabilities": [
+        "configurable",
         "health"
     ],
     "companyName": "jake.varness@gmail.com",
@@ -10,8 +15,17 @@
     "resources": {
         "media": [
             {
+                "file": "images/sessions_menu.png",
+                "menuIcon": true,
+                "name": "MENU",
+                "targetPlatforms": [
+                    "basalt"
+                ],
+                "type": "png"
+            },
+            {
                 "file": "fonts/lobster.ttf",
-                "name": "FONT_LOBSTER_24",
+                "name": "FONT_LOBSTER_18",
                 "targetPlatforms": [
                     "basalt"
                 ],
@@ -21,15 +35,6 @@
             {
                 "file": "fonts/lobster.ttf",
                 "name": "FONT_LOBSTER_30",
-                "targetPlatforms": [
-                    "basalt"
-                ],
-                "trackingAdjust": 1,
-                "type": "font"
-            },
-            {
-                "file": "fonts/lobster.ttf",
-                "name": "FONT_LOBSTER_18",
                 "targetPlatforms": [
                     "basalt"
                 ],
