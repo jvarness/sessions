@@ -5,6 +5,7 @@
         "weatherTemp": 2
     },
     "capabilities": [
+        "location",
         "configurable",
         "health"
     ],
@@ -25,7 +26,7 @@
             },
             {
                 "file": "fonts/lobster.ttf",
-                "name": "FONT_LOBSTER_18",
+                "name": "FONT_LOBSTER_30",
                 "targetPlatforms": [
                     "basalt"
                 ],
@@ -34,7 +35,7 @@
             },
             {
                 "file": "fonts/lobster.ttf",
-                "name": "FONT_LOBSTER_30",
+                "name": "FONT_LOBSTER_18",
                 "targetPlatforms": [
                     "basalt"
                 ],
