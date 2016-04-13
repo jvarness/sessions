@@ -1,0 +1,56 @@
+{
+    "appKeys": {
+        "accentColor1": 0,
+        "accentColor2": 1,
+        "weatherTemp": 2
+    },
+    "capabilities": [
+        "configurable",
+        "health"
+    ],
+    "companyName": "jake.varness@gmail.com",
+    "enableMultiJS": true,
+    "longName": "Sessions",
+    "projectType": "native",
+    "resources": {
+        "media": [
+            {
+                "file": "images/sessions_menu.png",
+                "menuIcon": true,
+                "name": "MENU",
+                "targetPlatforms": [
+                    "basalt"
+                ],
+                "type": "png"
+            },
+            {
+                "file": "fonts/lobster.ttf",
+                "name": "FONT_LOBSTER_18",
+                "targetPlatforms": [
+                    "basalt"
+                ],
+                "trackingAdjust": 1,
+                "type": "font"
+            },
+            {
+                "file": "fonts/lobster.ttf",
+                "name": "FONT_LOBSTER_30",
+                "targetPlatforms": [
+                    "basalt"
+                ],
+                "trackingAdjust": 1,
+                "type": "font"
+            }
+        ]
+    },
+    "sdkVersion": "3",
+    "shortName": "Sessions",
+    "targetPlatforms": [
+        "basalt"
+    ],
+    "uuid": "0b6d1939-9d0f-4ccd-992b-381b8c95810b",
+    "versionLabel": "1.0",
+    "watchapp": {
+        "watchface": true
+    }
+}
