@@ -2,7 +2,9 @@
     "appKeys": {
         "accentColor1": 0,
         "accentColor2": 1,
-        "weatherTemp": 2
+        "displayFahrenheit": 3,
+        "weatherTemp": 2,
+        "weatherTempCelcius": 4
     },
     "capabilities": [
         "location",
@@ -50,7 +52,7 @@
         "basalt"
     ],
     "uuid": "0b6d1939-9d0f-4ccd-992b-381b8c95810b",
-    "versionLabel": "1.1",
+    "versionLabel": "2.0",
     "watchapp": {
         "watchface": true
     }
