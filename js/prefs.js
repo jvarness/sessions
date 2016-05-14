@@ -6,10 +6,20 @@
 function loadOptions() {
   var $accent1 = $('#accentColor1');
   var $accent2 = $('#accentColor2');
+  var $fahrenheit = $('#fahrenheit');
+  var $celcius = $('#celcius');
+  
+  console.log('Loading Options: ' + JSON.stringify(localStorage));
   
   if (localStorage.accentColor1) {
     $accent1[0].value = localStorage.accentColor1;
     $accent2[0].value = localStorage.accentColor2;
+  }
+  
+  if (localStorage.displayFahrenheit == 'false') {
+      $celcius.addClass('active');
+  } else {
+      $fahrenheit.addClass('active');
   }
 }
 
@@ -22,14 +32,19 @@ function submitHandler() {
 function getAndStoreConfig() {
   var $accent1 = $('#accentColor1');
   var $accent2 = $('#accentColor2');
+  var $fahrenheit = $('#fahrenheit');
   
   var options = {
     accentColor1: $accent1.val(),
-    accentColor2: $accent2.val()
+    accentColor2: $accent2.val(),
+    displayFahrenheit: $fahrenheit.hasClass('active')
   };
   
   localStorage.accentColor1 = options.accentColor1;
   localStorage.accentColor2 = options.accentColor2;
+  localStorage.displayFahrenheit = options.displayFahrenheit;
+  
+  console.log('Options: ' + JSON.stringify(options));
   
   return options;
 }

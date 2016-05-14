@@ -5,6 +5,7 @@
 		<title>Sessions Configuration Page</title>
 		<link rel="stylesheet" type="text/css" href="bower_components/Slate/dist/css/slate.min.css"/>
 		<link rel="stylesheet" type="text/css" href="css/styles.css"/>
+		<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Lobster">
 	</head>
 	<body>
 		<div class="item-container">
@@ -17,12 +18,21 @@
 			<div class="item-container-content">
 				<label class="item">
 					First Accent Color
-					<input id="accentColor1" class="item-color item-color-sunny" type="text" value="#000000"/>
+					<input id="accentColor1" class="item-color item-color-normal" type="text" value="#000000"/>
 				</label>
 				<label class="item">
 					Second Accent Color
 					<input id="accentColor2" class="item-color item-color-sunny" type="text" value="#000000"/>
 				</label>
+			</div>
+			<div class="item-container-header">
+				Temperature Display
+			</div>
+			<div class="item-container-content">
+				<div class="item tab-buttons">
+					<a id="fahrenheit" name="tab-1" class="tab-button">Fahrenheit</a>
+					<a id="celcius" name="tab-1" class="tab-button">Celcius</a>
+				</div>
 			</div>
 			<div class="item-container-footer">
 				Click below to submit your changes.
