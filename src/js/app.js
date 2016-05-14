@@ -10,9 +10,11 @@ function fetchWeather(latitude, longitude) {
         console.log(req.responseText);
         var response = JSON.parse(req.responseText);
         var temperature = Math.round((response.main.temp - 273.15) * (9.0 / 5.0) + 32.0);
+        var temperatureCelcius = Math.round(response.main.temp - 273.15);
         console.log(temperature);
         Pebble.sendAppMessage({
           'weatherTemp': temperature + '\xB0F',
+          'weatherTempCelcius': temperatureCelcius + '\xB0C'
         });
       } else {
         console.log('Error');
@@ -57,14 +59,17 @@ Pebble.addEventListener('showConfiguration', function() {
 });
 
 Pebble.addEventListener('webviewclosed', function(e) {
-  var configData = JSON.parse(decodeURIComponent(e.response));
+  if(e.response !== undefined && e.response !== null) {
+    var configData = JSON.parse(decodeURIComponent(e.response));
   
-  console.log('Recieved from app: ' + JSON.stringify(configData));
-  
-  if(configData.accentColor1){
-    Pebble.sendAppMessage({
-      "accentColor1": parseInt(configData.accentColor1, 16),
-      "accentColor2": parseInt(configData.accentColor2, 16),
-    }); 
+    console.log('Recieved from app: ' + JSON.stringify(configData));
+    
+    if(configData.accentColor1){
+      Pebble.sendAppMessage({
+        "accentColor1": parseInt(configData.accentColor1, 16),
+        "accentColor2": parseInt(configData.accentColor2, 16),
+        "displayFahrenheit": configData.displayFahrenheit === true ? 1 : 0
+      }); 
+    }
   }
 });

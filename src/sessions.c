@@ -3,6 +3,8 @@
 #define KEY_ACCENT_1 0
 #define KEY_ACCENT_2 1
 #define KEY_WEATHER_TEMP 2
+#define KEY_DISPLAY_FAHRENHEIT 3
+#define KEY_WEATHER_TEMP_C 4
 
 static Window *window;
 static TextLayer *date_text;
@@ -41,7 +43,14 @@ static void update_health() {
 static void update_weather() {
   static char buffer[8];
   
-  persist_read_string(KEY_WEATHER_TEMP, buffer, sizeof(buffer));
+  bool display_fah = persist_read_bool(KEY_DISPLAY_FAHRENHEIT);
+  
+  if(display_fah) {
+    persist_read_string(KEY_WEATHER_TEMP, buffer, sizeof(buffer));
+  }
+  else {
+    persist_read_string(KEY_WEATHER_TEMP_C, buffer, sizeof(buffer));
+  }
   
   text_layer_set_text(temp_text, buffer);
 }
@@ -67,6 +76,8 @@ static void sessions_inbox_handler(DictionaryIterator *iterator, void *context) 
   Tuple *accent_1_t = dict_find(iterator, KEY_ACCENT_1);
   Tuple *accent_2_t = dict_find(iterator, KEY_ACCENT_2);
   Tuple *weather = dict_find(iterator, KEY_WEATHER_TEMP);
+  Tuple *weather_display = dict_find(iterator, KEY_DISPLAY_FAHRENHEIT);
+  Tuple *weather_c = dict_find(iterator, KEY_WEATHER_TEMP_C);
   
   if (accent_1_t) {
     int color = accent_1_t->value->int32;
@@ -91,9 +102,15 @@ static void sessions_inbox_handler(DictionaryIterator *iterator, void *context) 
     window_set_background_color(window, accent_2);
   }
   
-  if(weather) {
+  if(weather_display) {
+    persist_write_bool(KEY_DISPLAY_FAHRENHEIT, weather_display->value->uint8 == 1);
+    update_weather();
+  }
+  
+  if(weather || weather_c) {
     APP_LOG(APP_LOG_LEVEL_INFO, "Weather temp: %s", weather->value->cstring);
     persist_write_string(KEY_WEATHER_TEMP, weather->value->cstring);
+    persist_write_string(KEY_WEATHER_TEMP_C, weather_c->value->cstring);
     update_weather();
   }
 }
@@ -167,6 +184,12 @@ static void check_defaults() {
   }
   if(!persist_exists(KEY_WEATHER_TEMP)) {
     persist_write_string(KEY_WEATHER_TEMP, "--\u00B0F");
+  }
+  if(!persist_exists(KEY_DISPLAY_FAHRENHEIT)) {
+    persist_write_bool(KEY_DISPLAY_FAHRENHEIT, true);
+  }
+  if(!persist_exists(KEY_WEATHER_TEMP_C)) {
+    persist_write_string(KEY_WEATHER_TEMP_C, "--\u00B0C");
   }
 }
 
