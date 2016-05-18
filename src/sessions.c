@@ -87,8 +87,13 @@ static void sessions_inbox_handler(DictionaryIterator *iterator, void *context) 
     
     text_layer_set_text_color(clock_text, accent_1);
     text_layer_set_text_color(temp_text, accent_1);
+    
+    #if defined(PBL_RECT)
     text_layer_set_background_color(date_text, accent_1);
     text_layer_set_background_color(steps_text, accent_1);
+    #elif defined(PBL_ROUND)
+    window_set_background_color(window, accent_1);
+    #endif
   }
   
   if (accent_2_t) {
@@ -99,7 +104,13 @@ static void sessions_inbox_handler(DictionaryIterator *iterator, void *context) 
     
     text_layer_set_text_color(date_text, accent_2);
     text_layer_set_text_color(steps_text, accent_2);
+    
+    #if defined(PBL_RECT)
     window_set_background_color(window, accent_2);
+    #elif defined(PBL_ROUND)
+    text_layer_set_background_color(clock_text, accent_2);
+    text_layer_set_background_color(temp_text, accent_2);
+    #endif
   }
   
   if(weather_display) {
@@ -119,27 +130,27 @@ static void load_window(Window *win) {
   Layer *win_layer = window_get_root_layer(window);
   GRect dimensions = layer_get_bounds(win_layer);
   
-  clock_text = text_layer_create(GRect(0, dimensions.size.h / 2 - 18, dimensions.size.w, 45));
+  clock_text = text_layer_create(GRect(0, dimensions.size.h / 2 - PBL_IF_ROUND_ELSE(35, 18), dimensions.size.w, 45));
   text_layer_set_text_alignment(clock_text, GTextAlignmentCenter);
-  text_layer_set_background_color(clock_text, GColorClear);
+  text_layer_set_background_color(clock_text, PBL_IF_ROUND_ELSE(accent_2, GColorClear));
   text_layer_set_text_color(clock_text, accent_1);
   text_layer_set_font(clock_text, lobster_font_30);
   
-  date_text = text_layer_create(GRect(0, 0, dimensions.size.w, 25));
-  text_layer_set_background_color(date_text, accent_1);
+  date_text = text_layer_create(GRect(0, PBL_IF_ROUND_ELSE(20, 0), dimensions.size.w, 25));
+  text_layer_set_background_color(date_text, PBL_IF_ROUND_ELSE(GColorClear, accent_1));
   text_layer_set_text_color(date_text, accent_2);
   text_layer_set_font(date_text, lobster_font_18);
   text_layer_set_text_alignment(date_text, GTextAlignmentCenter);
   
-  steps_text = text_layer_create(GRect(0, dimensions.size.h - 25, dimensions.size.w, 25));
-  text_layer_set_background_color(steps_text, accent_1);
+  steps_text = text_layer_create(GRect(0, dimensions.size.h - PBL_IF_ROUND_ELSE(45, 25), dimensions.size.w, 25));
+  text_layer_set_background_color(steps_text, PBL_IF_ROUND_ELSE(GColorClear, accent_1));
   text_layer_set_text_color(steps_text, accent_2);
   text_layer_set_font(steps_text, lobster_font_18);
   text_layer_set_text_alignment(steps_text, GTextAlignmentCenter);
   
-  temp_text = text_layer_create(GRect(0, dimensions.size.h / 2 + 25, dimensions.size.w, 25));
+  temp_text = text_layer_create(GRect(0, dimensions.size.h / 2 + PBL_IF_ROUND_ELSE(10, 25), dimensions.size.w, 25));
   text_layer_set_text_alignment(temp_text, GTextAlignmentCenter);
-  text_layer_set_background_color(temp_text, GColorClear);
+  text_layer_set_background_color(temp_text, PBL_IF_ROUND_ELSE(accent_2, GColorClear));
   text_layer_set_text_color(temp_text, accent_1);
   text_layer_set_font(temp_text, lobster_font_18);
   
@@ -215,7 +226,7 @@ static void sessions_init() {
   tick_timer_service_subscribe(MINUTE_UNIT | HOUR_UNIT, tick_handler);
   health_service_events_subscribe(health_trigger, NULL);
   
-  window_set_background_color(window, accent_2);
+  window_set_background_color(window, PBL_IF_ROUND_ELSE(accent_1, accent_2));
   
   window_stack_push(window, false);
 }

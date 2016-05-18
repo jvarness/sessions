@@ -22,24 +22,27 @@
                 "menuIcon": true,
                 "name": "MENU",
                 "targetPlatforms": [
-                    "basalt"
+                    "basalt",
+                    "chalk"
                 ],
                 "type": "png"
             },
             {
                 "file": "fonts/lobster.ttf",
-                "name": "FONT_LOBSTER_30",
+                "name": "FONT_LOBSTER_18",
                 "targetPlatforms": [
-                    "basalt"
+                    "basalt",
+                    "chalk"
                 ],
                 "trackingAdjust": 1,
                 "type": "font"
             },
             {
                 "file": "fonts/lobster.ttf",
-                "name": "FONT_LOBSTER_18",
+                "name": "FONT_LOBSTER_30",
                 "targetPlatforms": [
-                    "basalt"
+                    "basalt",
+                    "chalk"
                 ],
                 "trackingAdjust": 1,
                 "type": "font"
@@ -49,10 +52,11 @@
     "sdkVersion": "3",
     "shortName": "Sessions",
     "targetPlatforms": [
-        "basalt"
+        "basalt",
+        "chalk"
     ],
     "uuid": "0b6d1939-9d0f-4ccd-992b-381b8c95810b",
-    "versionLabel": "2.0",
+    "versionLabel": "3.0",
     "watchapp": {
         "watchface": true
     }
